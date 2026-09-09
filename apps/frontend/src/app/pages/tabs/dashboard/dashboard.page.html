@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="dashboard">
+    <h1 class="glow-text">Hola{{ nombreUsuario ? ', ' + nombreUsuario : '' }}</h1>
+    <p class="subtitle">¿Qué querés hacer hoy?</p>
+
+    <div class="accesos">
+      <a
+        *ngFor="let acceso of accesos"
+        [routerLink]="acceso.ruta"
+        class="acceso-card"
+      >
+        <ion-icon [name]="acceso.icono" class="acceso-icono"></ion-icon>
+        <div class="acceso-texto">
+          <h2>{{ acceso.titulo }}</h2>
+          <p>{{ acceso.descripcion }}</p>
+        </div>
+        <ion-icon name="chevron-forward-outline" class="acceso-chevron"></ion-icon>
+      </a>
+    </div>
+  </div>
+</ion-content>

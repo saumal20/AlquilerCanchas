@@ -1,0 +1,40 @@
+.auth {
+  max-width: 420px;
+  margin: 4vh auto 0;
+  padding: 0 16px 32px;
+  text-align: center;
+}
+
+.auth h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.auth .subtitle {
+  color: var(--ion-text-color-step-350);
+  margin: 0 0 24px;
+}
+
+ion-segment {
+  margin-bottom: 24px;
+}
+
+.auth-form {
+  text-align: left;
+}
+
+.auth-form ion-item {
+  margin-bottom: 4px;
+  --background: var(--ion-background-color-step-100);
+  border-radius: 8px;
+}
+
+.error {
+  color: var(--ion-color-danger);
+  font-size: 13px;
+  margin: 4px 4px 12px;
+}
+
+ion-button[expand='block'] {
+  margin-top: 16px;
+}

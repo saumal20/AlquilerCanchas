@@ -1,0 +1,16 @@
+.placeholder {
+  text-align: center;
+  max-width: 420px;
+  margin: 10vh auto 0;
+  padding: 0 16px;
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: var(--ion-text-color-step-350);
+    margin: 0;
+  }
+}

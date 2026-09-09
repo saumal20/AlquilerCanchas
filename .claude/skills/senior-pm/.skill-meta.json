@@ -1,0 +1,13 @@
+{
+  "sourceType": "github",
+  "source": "github",
+  "url": "https://github.com/alirezarezvani/claude-skills",
+  "repo": "alirezarezvani/claude-skills",
+  "ref": null,
+  "subpath": "project-management/skills/senior-pm",
+  "installSource": "alirezarezvani/claude-skills/project-management/skills/senior-pm",
+  "skillName": "senior-pm",
+  "scope": "global",
+  "installedAt": "2026-09-09T16:05:47.882Z",
+  "updatedAt": "2026-09-09T16:05:47.882Z"
+}

@@ -1,0 +1,95 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="profile">
+    <h1>Mi perfil</h1>
+    <p class="subtitle">Tus datos, siempre editables.</p>
+
+    <div class="avatar-wrap">
+      <div class="avatar" [style.backgroundImage]="fotoPreview ? 'url(' + fotoPreview + ')' : null">
+        <span *ngIf="!fotoPreview">{{ form.controls.nombreCompleto.value.charAt(0) || 'U' }}</span>
+      </div>
+      <label class="avatar-edit" for="foto-input">Cambiar foto</label>
+      <input id="foto-input" type="file" accept="image/*" (change)="onFotoSeleccionada($event)" hidden />
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="guardar()" class="profile-form">
+      <ion-item>
+        <ion-label position="stacked">Nombre completo</ion-label>
+        <ion-input type="text" formControlName="nombreCompleto" autocomplete="name"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="form.controls.nombreCompleto.touched && form.controls.nombreCompleto.invalid">
+        Ingresá tu nombre.
+      </p>
+
+      <ion-item>
+        <ion-label position="stacked">Correo</ion-label>
+        <ion-input type="email" formControlName="correo" autocomplete="email" inputmode="email"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="form.controls.correo.touched && form.controls.correo.invalid">
+        Ingresá un correo válido.
+      </p>
+
+      <ion-item>
+        <ion-label position="stacked">Celular</ion-label>
+        <ion-input type="tel" formControlName="celular" autocomplete="tel" inputmode="tel"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="form.controls.celular.touched && form.controls.celular.invalid">
+        Ingresá un celular válido (solo números).
+      </p>
+
+      <ion-item>
+        <ion-label position="stacked">DNI (opcional)</ion-label>
+        <ion-input type="text" formControlName="dni" inputmode="numeric"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="toggle-item">
+        <ion-label>Notificaciones</ion-label>
+        <ion-toggle formControlName="notificacionesActivas" color="cta"></ion-toggle>
+      </ion-item>
+
+      <ion-button expand="block" color="cta" type="submit" [disabled]="guardando">
+        {{ guardando ? 'Guardando...' : 'Guardar cambios' }}
+      </ion-button>
+    </form>
+
+    <div class="section-divider"></div>
+
+    <h2>Seguridad</h2>
+    <p class="subtitle">Cambiar contraseña.</p>
+
+    <form [formGroup]="formClave" (ngSubmit)="cambiarClave()" class="profile-form">
+      <ion-item>
+        <ion-label position="stacked">Contraseña actual</ion-label>
+        <ion-input type="password" formControlName="claveActual" autocomplete="current-password"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="formClave.controls.claveActual.touched && formClave.controls.claveActual.invalid">
+        Mínimo 6 caracteres.
+      </p>
+
+      <ion-item>
+        <ion-label position="stacked">Contraseña nueva</ion-label>
+        <ion-input type="password" formControlName="claveNueva" autocomplete="new-password"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="formClave.controls.claveNueva.touched && formClave.controls.claveNueva.invalid">
+        Mínimo 6 caracteres.
+      </p>
+
+      <ion-item>
+        <ion-label position="stacked">Confirmar contraseña nueva</ion-label>
+        <ion-input type="password" formControlName="confirmarClave" autocomplete="new-password"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="formClave.controls.confirmarClave.touched && formClave.errors?.['clavesNoCoinciden']">
+        Las contraseñas no coinciden.
+      </p>
+
+      <ion-button expand="block" fill="outline" color="secondary" type="submit" [disabled]="cambiandoClave">
+        {{ cambiandoClave ? 'Actualizando...' : 'Actualizar contraseña' }}
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ modo === 'login' ? 'Ingresar' : 'Crear cuenta' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="auth">
+    <h1 class="glow-text">Canchas App</h1>
+    <p class="subtitle">Reservá tu cancha y organizá tus partidos en un solo lugar.</p>
+
+    <ion-segment [value]="modo" (ionChange)="cambiarModo($any($event.detail.value))">
+      <ion-segment-button value="login">
+        <ion-label>Iniciar sesión</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="registro">
+        <ion-label>Registrarme</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <!-- Login -->
+    <form *ngIf="modo === 'login'" [formGroup]="formLogin" (ngSubmit)="enviarLogin()" class="auth-form">
+      <ion-item>
+        <ion-label position="stacked">Correo</ion-label>
+        <ion-input type="email" formControlName="correo" autocomplete="email" inputmode="email"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="formLogin.controls.correo.touched && formLogin.controls.correo.invalid">
+        Ingresá un correo válido.
+      </p>
+
+      <ion-item>
+        <ion-label position="stacked">Contraseña</ion-label>
+        <ion-input type="password" formControlName="clave" autocomplete="current-password"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="formLogin.controls.clave.touched && formLogin.controls.clave.invalid">
+        Mínimo 6 caracteres.
+      </p>
+
+      <ion-button expand="block" color="cta" type="submit" [disabled]="enviando">
+        {{ enviando ? 'Ingresando...' : 'Ingresar' }}
+      </ion-button>
+    </form>
+
+    <!-- Registro -->
+    <form *ngIf="modo === 'registro'" [formGroup]="formRegistro" (ngSubmit)="enviarRegistro()" class="auth-form">
+      <ion-item>
+        <ion-label position="stacked">Nombre completo</ion-label>
+        <ion-input type="text" formControlName="nombreCompleto" autocomplete="name"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="formRegistro.controls.nombreCompleto.touched && formRegistro.controls.nombreCompleto.invalid">
+        Ingresá tu nombre.
+      </p>
+
+      <ion-item>
+        <ion-label position="stacked">Correo</ion-label>
+        <ion-input type="email" formControlName="correo" autocomplete="email" inputmode="email"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="formRegistro.controls.correo.touched && formRegistro.controls.correo.invalid">
+        Ingresá un correo válido.
+      </p>
+
+      <ion-item>
+        <ion-label position="stacked">Celular</ion-label>
+        <ion-input type="tel" formControlName="celular" autocomplete="tel" inputmode="tel"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="formRegistro.controls.celular.touched && formRegistro.controls.celular.invalid">
+        Ingresá un celular válido (solo números).
+      </p>
+
+      <ion-item>
+        <ion-label position="stacked">DNI (opcional)</ion-label>
+        <ion-input type="text" formControlName="dni" inputmode="numeric"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Contraseña</ion-label>
+        <ion-input type="password" formControlName="clave" autocomplete="new-password"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="formRegistro.controls.clave.touched && formRegistro.controls.clave.invalid">
+        Mínimo 6 caracteres.
+      </p>
+
+      <ion-button expand="block" color="cta" type="submit" [disabled]="enviando">
+        {{ enviando ? 'Creando cuenta...' : 'Crear cuenta' }}
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

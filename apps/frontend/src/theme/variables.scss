@@ -1,0 +1,123 @@
+/*
+ * Design tokens — skill `disenio_interfaz`
+ * Dark Mode (OLED) · Minimal Single Column · Fira Code / Fira Sans
+ * Fuente: .claude/skills/disenio_interfaz/SKILL.md
+ */
+
+/* Tipografía Fira (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Paleta — skill disenio_interfaz §3 */
+  --ion-color-primary: #3b82f6;
+  --ion-color-primary-rgb: 59, 130, 246;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #3472d8;
+  --ion-color-primary-tint: #4f8ff7;
+
+  --ion-color-secondary: #60a5fa;
+  --ion-color-secondary-rgb: 96, 165, 250;
+  --ion-color-secondary-contrast: #05070a;
+  --ion-color-secondary-contrast-rgb: 5, 7, 10;
+  --ion-color-secondary-shade: #5491dc;
+  --ion-color-secondary-tint: #70aefb;
+
+  /* CTA — naranja, botón grande y centrado (layout single column) */
+  --ion-color-cta: #f97316;
+  --ion-color-cta-rgb: 249, 115, 22;
+  --ion-color-cta-contrast: #05070a;
+  --ion-color-cta-contrast-rgb: 5, 7, 10;
+  --ion-color-cta-shade: #db6514;
+  --ion-color-cta-tint: #fa812e;
+
+  /* Fondo OLED: negro profundo con tinte azul medianoche, evita blanco/negro puro en texto */
+  --ion-background-color: #05070a;
+  --ion-background-color-rgb: 5, 7, 10;
+  --ion-text-color: #e5e9f0;
+  --ion-text-color-rgb: 229, 233, 240;
+
+  --ion-background-color-step-50: #0a0d12;
+  --ion-background-color-step-100: #0d1117;
+  --ion-background-color-step-150: #10141c;
+  --ion-background-color-step-200: #141924;
+  --ion-background-color-step-250: #171d29;
+  --ion-background-color-step-300: #1b212f;
+  --ion-background-color-step-350: #1e2635;
+  --ion-background-color-step-400: #222a3b;
+  --ion-background-color-step-500: #2a3346;
+
+  --ion-text-color-step-50: #f1f4f8;
+  --ion-text-color-step-100: #dde3ec;
+  --ion-text-color-step-150: #c9d1de;
+  --ion-text-color-step-200: #b5c0d1;
+  --ion-text-color-step-350: #94a3b8;
+  --ion-text-color-step-500: #64748b;
+
+  --ion-toolbar-background: var(--ion-background-color-step-100);
+  --ion-item-background: var(--ion-background-color-step-100);
+  --ion-card-background: var(--ion-background-color-step-150);
+  --ion-tab-bar-background: var(--ion-background-color-step-100);
+
+  --ion-font-family: 'Fira Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-mono: 'Fira Code', 'SFMono-Regular', Consolas, monospace;
+
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--ion-font-family);
+}
+
+/*
+ * "cta" no es un color nativo de la paleta de Ionic (primary/secondary/tertiary/...),
+ * así que Ionic no genera automáticamente la clase utilitaria .ion-color-cta que
+ * mapea --ion-color-cta -> --ion-color-base. La replicamos acá a mano (mismo
+ * patrón que @ionic/angular/css/core.css usa para los colores nativos) para
+ * poder usar color="cta" en cualquier ion-button / ion-toggle / etc.
+ */
+.ion-color-cta {
+  --ion-color-base: var(--ion-color-cta) !important;
+  --ion-color-base-rgb: var(--ion-color-cta-rgb) !important;
+  --ion-color-contrast: var(--ion-color-cta-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-cta-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-cta-shade) !important;
+  --ion-color-tint: var(--ion-color-cta-tint) !important;
+}
+
+/* Efecto glow mínimo — skill disenio_interfaz §5, uso puntual en CTA/titulares */
+.glow-text {
+  text-shadow: 0 0 10px rgba(var(--ion-color-primary-rgb), 0.45);
+}
+
+/* Foco visible para navegación por teclado — checklist §7 */
+a:focus-visible,
+button:focus-visible,
+ion-button:focus-visible,
+ion-item:focus-visible,
+.ion-focusable:focus-visible {
+  outline: 2px solid var(--ion-color-secondary);
+  outline-offset: 2px;
+}
+
+/* prefers-reduced-motion — checklist §7 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* cursor-pointer en elementos clicables — checklist §7 */
+ion-button,
+ion-item[button],
+ion-fab-button,
+ion-chip,
+ion-card[button],
+a {
+  cursor: pointer;
+}
